@@ -1,0 +1,44 @@
+# Dependências do Node.js
+node_modules/
+
+# Compilados do TypeScript
+/dist
+/build
+/lib
+/*.js
+
+# Arquivos de log
+*.log
+
+# Arquivos de ambiente
+.env
+
+# Arquivos de cache do TypeScript
+*.tsbuildinfo
+
+# Prisma
+/prisma/migrations/
+/prisma/dev.db
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Diretório de testes e cobertura de testes
+coverage/
+*.lcov
+
+# Arquivos do editor
+.idea/
+.vscode/
+
+# Arquivos de backup do editor
+*~
+
+# Arquivos de cache do NPM
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos temporários de sistemas operacionais
+*.swp

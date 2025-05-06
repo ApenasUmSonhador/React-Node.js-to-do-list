@@ -1,0 +1,62 @@
+### Configuração base
+@baseUrl = http://localhost:3000
+@token = TOKEN_APOS_LOGIN_AQUI
+@taskId = ID_DA_TAREFA_AQUI
+
+###
+### Registrar novo usuário
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "teste@exemplo.com",
+  "password": "senha123"
+}
+
+###
+### Login para obter token
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "teste@exemplo.com",
+  "password": "senha123"
+}
+
+###
+### Criar uma tarefa
+POST {{baseUrl}}/tasks
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Tarefa teste 2",
+  "description": "Descrição da tarefa atual"
+}
+
+###
+### Buscar todas as tarefas
+GET {{baseUrl}}/tasks
+Authorization: Bearer {{token}}
+
+###
+### Buscar uma tarefa por ID
+GET {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{token}}
+
+###
+### Atualizar uma tarefa
+PUT {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Atualizado",
+  "description": "Descrição atualizada",
+  "done": true
+}
+
+###
+### Deletar uma tarefa
+DELETE {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{token}}
