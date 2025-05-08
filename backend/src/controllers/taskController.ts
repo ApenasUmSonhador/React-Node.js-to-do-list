@@ -23,6 +23,10 @@ export const createTask = async (req: Request, res: Response) => {
     return res.status(401).json({ error: 'Token não fornecido' })
   }
 
+  if (!title || title.trim() === '') {
+    return res.status(400).json({ error: 'O título é obrigatório' })
+  }
+
   try {
     const userId = getUserFromToken(token)
 
