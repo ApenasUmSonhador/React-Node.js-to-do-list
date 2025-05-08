@@ -11,7 +11,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
     const authHeader = req.headers.authorization
 
     if (!authHeader) {
-        return res.status(401).json({ error: 'Token not provided' })
+        return res.status(401).json({ error: 'Token não fornecido' })
     }
 
     const token = authHeader.split(' ')[1]
@@ -21,6 +21,6 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
         req.user = { id: decoded.userId }
         next()
     } catch {
-        res.status(401).json({ error: 'Invalid token' })
+        res.status(401).json({ error: 'Token inválido' })
     }
 }

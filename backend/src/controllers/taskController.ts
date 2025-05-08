@@ -10,7 +10,7 @@ const getUserFromToken = (token: string) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string }
     return decoded.userId
   } catch (err) {
-    throw new Error('Invalid token')
+    throw new Error('Token inválido')
   }
 }
 
@@ -20,7 +20,7 @@ export const createTask = async (req: Request, res: Response) => {
   const token = req.headers.authorization?.split(' ')[1]
 
   if (!token) {
-    return res.status(401).json({ error: 'Token not provided' })
+    return res.status(401).json({ error: 'Token não fornecido' })
   }
 
   try {
@@ -36,7 +36,7 @@ export const createTask = async (req: Request, res: Response) => {
 
     res.status(201).json(task)
   } catch (err) {
-    res.status(400).json({ error: 'Error creating task' })
+    res.status(400).json({ error: 'Erro ao criar tarefa' })
   }
 }
 
@@ -45,7 +45,7 @@ export const getAllTasks = async (req: Request, res: Response) => {
   const token = req.headers.authorization?.split(' ')[1]
 
   if (!token) {
-    return res.status(401).json({ error: 'Token not provided' })
+    return res.status(401).json({ error: 'Token não fornecido' })
   }
 
   try {
@@ -60,7 +60,7 @@ export const getAllTasks = async (req: Request, res: Response) => {
 
     res.json(tasks)
   } catch (err) {
-    res.status(500).json({ error: 'Error fetching tasks' })
+    res.status(500).json({ error: 'Erro ao buscar tarefas' })
   }
 }
 
@@ -69,7 +69,7 @@ export const getTaskById = async (req: Request, res: Response) => {
   const token = req.headers.authorization?.split(' ')[1]
 
   if (!token) {
-    return res.status(401).json({ error: 'Token not provided' })
+    return res.status(401).json({ error: 'Token não fornecido' })
   }
 
   try {
@@ -83,16 +83,16 @@ export const getTaskById = async (req: Request, res: Response) => {
     })
 
     if (!task) {
-      return res.status(404).json({ message: 'Task not found' })
+      return res.status(404).json({ message: 'Tarefa não encontrada' })
     }
 
     if (task.userId !== userId) {
-      return res.status(403).json({ error: 'You do not have permission to access this task' })
+      return res.status(403).json({ error: 'Você não tem permissão para acessar esta tarefa' })
     }
 
     res.json(task)
   } catch (err) {
-    res.status(500).json({ error: 'Error fetching task' })
+    res.status(500).json({ error: 'Erro ao buscar tarefa' })
   }
 }
 
@@ -103,7 +103,7 @@ export const updateTask = async (req: Request, res: Response) => {
   const token = req.headers.authorization?.split(' ')[1]
 
   if (!token) {
-    return res.status(401).json({ error: 'Token not provided' })
+    return res.status(401).json({ error: 'Token não fornecido' })
   }
 
   try {
@@ -116,11 +116,11 @@ export const updateTask = async (req: Request, res: Response) => {
     })
 
     if (!task) {
-      return res.status(404).json({ error: 'Task not found' })
+      return res.status(404).json({ error: 'Tarefa não encontrada' })
     }
 
     if (task.userId !== userId) {
-      return res.status(403).json({ error: 'You do not have permission to update this task' })
+      return res.status(403).json({ error: 'Você não tem permissão para atualizar esta tarefa' })
     }
 
     const updatedTask = await prisma.task.update({
@@ -130,7 +130,7 @@ export const updateTask = async (req: Request, res: Response) => {
 
     res.json(updatedTask)
   } catch (err) {
-    res.status(500).json({ error: 'Error updating task' })
+    res.status(500).json({ error: 'Erro ao atualizar tarefa' })
   }
 }
 
@@ -140,7 +140,7 @@ export const deleteTask = async (req: Request, res: Response) => {
   const token = req.headers.authorization?.split(' ')[1]
 
   if (!token) {
-    return res.status(401).json({ error: 'Token not provided' })
+    return res.status(401).json({ error: 'Token não fornecido' })
   }
 
   try {
@@ -151,16 +151,16 @@ export const deleteTask = async (req: Request, res: Response) => {
     })
 
     if (!task) {
-      return res.status(404).json({ error: 'Task not found' })
+      return res.status(404).json({ error: 'Tarefa não encontrada' })
     }
 
     if (task.userId !== userId) {
-      return res.status(403).json({ error: 'You do not have permission to delete this task' })
+      return res.status(403).json({ error: 'Você não tem permissão para deletar esta tarefa' })
     }
 
     await prisma.task.delete({ where: { id } })
     res.status(204).end()
   } catch (err) {
-    res.status(500).json({ error: 'Error deleting task' })
+    res.status(500).json({ error: 'Erro ao deletar tarefa' })
   }
 }
