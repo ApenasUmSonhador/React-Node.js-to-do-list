@@ -2,7 +2,7 @@
 
 Este repositório contém a aplicação **To-Do List**, dividida em duas partes principais:
 
-- **Frontend**: Interface do usuário construída com **React** e **TypeScript**.
+- **Frontend**: Interface do usuário construída com **React**, **Material UI** e **TypeScript**.
 - **Backend**: API REST com autenticação e gerenciamento de tarefas, construída com **Node.js**, **TypeScript**, **Express**, **Prisma** e **PostgreSQL**.
 
 ---
