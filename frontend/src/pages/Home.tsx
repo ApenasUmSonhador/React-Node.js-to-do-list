@@ -54,7 +54,7 @@ export default function Home() {
             setTitle('');
             setDescription('');
         } catch (error: any) {
-            const msg = error.response?.data?.error || 'Erro inesperado durante o login';
+            const msg = error.response?.data?.error || 'Erro inesperado durante o criacao da tarefa';
             alert(`Erro ao criar a tarefa: ${msg}`);
             console.error('Erro ao criar tarefa', err);
         }
@@ -77,7 +77,9 @@ export default function Home() {
             setTasks((prev) =>
                 prev.map((t) => (t.id === task.id ? res.data : t))
             );
-        } catch (err) {
+        } catch (error: any) {
+            const msg = error.response?.data?.error || 'Erro inesperado durante atualizacao da tarefa';
+            alert(`Erro ao atualizar a tarefa: ${msg}`);
             console.error('Erro ao atualizar tarefa', err);
         }
     };
@@ -90,10 +92,31 @@ export default function Home() {
                 },
             });
             setTasks((prev) => prev.filter((t) => t.id !== id));
-        } catch (err) {
-            console.error('Erro ao deletar tarefa', err);
+        }
+        catch (error: any) {
+            const msg = error.response?.data?.error || 'Erro inesperado atualizacao da tarefa';
+            alert(`Erro ao atualizar a tarefa: ${msg}`);
+            console.error('Erro ao atualizar tarefa', err);
         }
     };
+
+    const handleUpdate = async (updatedTask: Task) => {
+        try {
+            const response = await axios.put(`${API_URL}/tasks/${updatedTask.id}`, updatedTask, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setTasks((prevTasks) =>
+                prevTasks.map((t) => (t.id === updatedTask.id ? response.data : t))
+            );
+        }
+        catch (error: any) {
+            const msg = error.response?.data?.error || 'Erro inesperado durante atualizacao da tarefa';
+            alert(`Erro ao atualizar a tarefa: ${msg}`);
+            console.error('Erro ao atualizar tarefa', err);
+        };
+    }
 
     const handleLogout = () => {
         logout();
@@ -140,6 +163,7 @@ export default function Home() {
                         task={task}
                         onToggleDone={handleToggleDone}
                         onDelete={handleDelete}
+                        onUpdate={handleUpdate}
                     />
                 ))}
             </List>
