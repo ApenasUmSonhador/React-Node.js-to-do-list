@@ -91,6 +91,7 @@ A aplicação será iniciada em `http://localhost:5173` (por padrão com Vite), 
 - Listagem de todas as tarefas do usuário
 - Marcar/desmarcar tarefa como concluída
 - Exclusão de tarefas
+- Edição de tarefas
 - Logout (limpa o token e redireciona para login)
 
 ## Autenticação
