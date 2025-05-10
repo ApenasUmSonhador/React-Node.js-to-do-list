@@ -1,5 +1,5 @@
 ### Configuração base
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:SUA_PORTA_AQUI
 @token = TOKEN_APOS_LOGIN_AQUI
 @taskId = ID_DA_TAREFA_AQUI
 
@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
   "email": "teste@exemplo.com",
-  "password": "senha123"
+  "password": "@Senha123"
 }
 
 ###
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 {
   "email": "teste@exemplo.com",
-  "password": "senha123"
+  "password": "@Senha123"
 }
 
 ###
