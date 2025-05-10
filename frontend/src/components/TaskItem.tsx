@@ -60,6 +60,7 @@ export default function TaskItem({ task, onToggleDone, onDelete, onUpdate }: Tas
             value={editedTitle}
             onChange={(e) => setEditedTitle(e.target.value)}
             margin="dense"
+            multiline
           />
           <TextField
             fullWidth
@@ -67,20 +68,28 @@ export default function TaskItem({ task, onToggleDone, onDelete, onUpdate }: Tas
             value={editedDescription}
             onChange={(e) => setEditedDescription(e.target.value)}
             margin="dense"
+            multiline
           />
         </div>
       ) : (
-        <ListItemText
-          primary={task.title}
-          secondary={
-            <>
-              {task.description && <span>{task.description}</span>}
-              <br />
-              <small>Criado em: {new Date(task.createdAt).toLocaleDateString()}</small>
-            </>
-          }
-          sx={{ textDecoration: task.done ? 'line-through' : 'none' }}
-        />
+        <div style={{ width: '90%' }}>
+
+          <ListItemText
+            primary={task.title}
+            secondary={
+              <>
+                {task.description && <span style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>{task.description}</span>}
+                <br />
+                <small>Criado em: {new Date(task.createdAt).toLocaleDateString()}</small>
+              </>
+            }
+            sx={{
+              textDecoration: task.done ? 'line-through' : 'none',
+              wordWrap: 'break-word',
+              whiteSpace: 'pre-wrap',
+            }}
+          />
+        </div>
       )}
     </ListItem>
   );
