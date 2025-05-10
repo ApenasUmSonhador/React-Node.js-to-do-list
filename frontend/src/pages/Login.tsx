@@ -30,10 +30,12 @@ export default function Login() {
     return (
         <Container maxWidth="sm">
             <Box component="form" onSubmit={handleLogin} mt={8}>
-                <Typography variant="h4" gutterBottom>Login</Typography>
-                <Button variant="outlined" color="secondary" onClick={() => navigate('/register')}>
-                    Fazer Registro
-                </Button>
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                    <Typography variant="h4" gutterBottom>Login</Typography>
+                    <Button variant="outlined" color="primary" onClick={() => navigate('/register')}>
+                        Fazer Registro
+                    </Button>
+                </Box>
                 <TextField fullWidth margin="normal" label="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <TextField fullWidth type="password" margin="normal" label="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <Button variant="contained" type="submit" fullWidth>Entrar</Button>

@@ -14,6 +14,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+    const API_URL = import.meta.env.VITE_API_URL;
     const [tasks, setTasks] = useState<Task[]>([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -23,7 +24,7 @@ export default function Home() {
 
     const fetchTasks = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/tasks', {
+            const res = await axios.get(`${API_URL}/tasks`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -41,7 +42,7 @@ export default function Home() {
     const handleCreateTask = async () => {
         try {
             const res = await axios.post(
-                'http://localhost:3000/tasks',
+                `${API_URL}/tasks`,
                 { title, description },
                 {
                     headers: {
@@ -52,7 +53,7 @@ export default function Home() {
             setTasks((prev) => [...prev, res.data]);
             setTitle('');
             setDescription('');
-        } catch (error: any) {  
+        } catch (error: any) {
             const msg = error.response?.data?.error || 'Erro inesperado durante o login';
             alert(`Erro ao criar a tarefa: ${msg}`);
             console.error('Erro ao criar tarefa', err);
@@ -62,7 +63,7 @@ export default function Home() {
     const handleToggleDone = async (task: Task) => {
         try {
             const res = await axios.put(
-                `http://localhost:3000/tasks/${task.id}`,
+                `${API_URL}/tasks/${task.id}`,
                 {
                     ...task,
                     done: !task.done,
@@ -83,7 +84,7 @@ export default function Home() {
 
     const handleDelete = async (id: string) => {
         try {
-            await axios.delete(`http://localhost:3000/tasks/${id}`, {
+            await axios.delete(`${API_URL}/tasks/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -101,11 +102,13 @@ export default function Home() {
 
     return (
         <Container maxWidth="sm">
-            <Box display="flex" justifyContent="space-between" alignItems="center" mt={4} mb={2}>
-                <Typography variant="h4">Gerenciador de Tarefas</Typography>
-                <Button variant="outlined" color="secondary" onClick={handleLogout}>
+            <Box display="flex" justifyContent="center" mt={2}>
+                <Button variant="outlined" color="primary" onClick={handleLogout}>
                     Sair
                 </Button>
+            </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center" mt={4} mb={2}>
+                <Typography variant="h4">Gerenciador de Tarefas</Typography>
             </Box>
 
             <TextField

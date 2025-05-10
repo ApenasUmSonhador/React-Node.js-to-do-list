@@ -33,10 +33,12 @@ export default function Register() {
     return (
         <Container maxWidth="sm">
             <Box component="form" onSubmit={handleRegister} mt={8}>
-                <Button variant="outlined" color="secondary" onClick={() => navigate('/login')}>
-                    Fazer login
-                </Button>
-                <Typography variant="h4" gutterBottom>Registrar</Typography>
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                    <Typography variant="h4" gutterBottom>Registrar</Typography>
+                    <Button variant="outlined" color="primary" onClick={() => navigate('/login')}>
+                        Fazer login
+                    </Button>
+                </Box>
                 <TextField
                     fullWidth
                     margin="normal"
