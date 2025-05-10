@@ -9,7 +9,7 @@ Este repositório contém a aplicação **To-Do List**, dividida em duas partes 
 
 ## 📁 Estrutura do Projeto
 
-```
+```yml
 to-do-list/
 │
 ├── backend/         # API e lógica do servidor
@@ -23,7 +23,7 @@ to-do-list/
 
 ---
 
-## Funcionalidades
+## 🚀 Funcionalidades
 
 - Cadastro e login de usuários com autenticação via JWT.
 - Criação, visualização, atualização e remoção de tarefas.
@@ -32,7 +32,7 @@ to-do-list/
 
 ---
 
-## Tecnologias Utilizadas
+## 📦 Tecnologias Utilizadas
 
 ### Backend
 
@@ -94,7 +94,7 @@ O frontend estará disponível geralmente em `http://localhost:5173` e o backend
 
 ---
 
-## Notas
+## 📌 Notas
 
 - Certifique-se de que o banco de dados PostgreSQL esteja em execução.
 - O frontend se comunica com o backend via Axios, verifique se as URLs estão corretas nas variáveis de ambiente ou configuração.

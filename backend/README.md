@@ -2,13 +2,16 @@
 
 Este é o backend do sistema de To-Do List com autenticação de usuários e gerenciamento de tarefas. O backend é construído com Node.js, TypeScript, Express, Prisma e PostgreSQL.
 
-## Requisitos
+## 📦 Requisitos
 
 - **Node.js** (versão 14 ou superior)
 - **npm** (ou **yarn** como alternativa)
 - **PostgreSQL** (ou outro banco de dados PostgreSQL em execução)
 
-## Estrutura do Projeto
+---
+
+## 📁 Estrutura do Projeto
+
 ```yml
 backend/
 │   .env                         # Arquivo de configuração de variáveis de ambiente
@@ -34,10 +37,10 @@ backend/
     │       taskRoutes.ts        # Rotas relacionadas ao gerenciamento de tarefas
     └───types/express/index.d.ts # Definições de tipos personalizados para o Express
 ```
-```
 
+---
 
-## Configuração do Projeto
+## ⚙️ Instalação, configuração e Execução
 
 ### Passo 1: Clonando o Repositório
 
@@ -98,11 +101,13 @@ Ou, se preferir, use:
 yarn dev
 ```
 
-O servidor irá rodar na porta `3000` por padrão.
+O servidor irá rodar na porta definida no arquivo `.env` (por padrão, `3000`, caso não seja especificado).
 
-## Endpoints
+--- 
 
-### Autenticação de Usuário
+## 🌐 Endpoints
+
+### 🛡️ Autenticação de Usuário
 
 #### Registrar Usuário
 
@@ -149,7 +154,7 @@ O servidor irá rodar na porta `3000` por padrão.
 
 > **Nota:** O token JWT gerado no login deve ser incluído nas requisições seguintes para autenticação.
 
-### Tarefas (Tasks)
+### ✅ Tarefas (Tasks)
 
 #### Criar uma Tarefa
 
@@ -256,8 +261,8 @@ O servidor irá rodar na porta `3000` por padrão.
 ```json
 {}
 ```
-
-## Testando a API
+---
+## 🧪 Testando a API
 
 Você pode testar a API utilizando o Postman ou a extensão REST Client no VSCode via arquivo `route-test.http`. Para realizar as requisições, inclua o token JWT obtido durante o login no cabeçalho das requisições.
 

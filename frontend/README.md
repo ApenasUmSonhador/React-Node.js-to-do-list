@@ -2,13 +2,14 @@
 
 Este é o frontend do sistema de To-Do List com autenticação de usuários e gerenciamento de tarefas. O frontend é construído com React, TypeScript e Material UI (MUI), consumindo a API do backend para gerenciamento de autenticação e tarefas.
 
-## Requisitos
+## 📦 Requisitos
 
 - Node.js (versão 14 ou superior)
 - npm ou yarn
 - Backend rodando localmente em `VITE_API_URL`
+---
 
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```yml
 frontend/
@@ -37,7 +38,9 @@ frontend/
     │   auth.ts               # Serviços para autenticação (token, logout, etc.)
 ```
 
-## Instalação e Execução
+---
+
+## ⚙️ Instalação e Execução
 
 ### Passo 1: Clonando o Repositório
 
@@ -83,7 +86,9 @@ A aplicação será iniciada em `http://localhost:5173` (por padrão com Vite), 
 
 **Nota:** Certifique-se de que o backend esteja em execução em `VITE_API_URL` ou ajuste as URLs das requisições no frontend conforme necessário.
 
-## Funcionalidades
+---
+
+## 🚀 Funcionalidades
 
 - Registro de novo usuário
 - Login e armazenamento do token JWT
@@ -94,15 +99,25 @@ A aplicação será iniciada em `http://localhost:5173` (por padrão com Vite), 
 - Edição de tarefas
 - Logout (limpa o token e redireciona para login)
 
-## Autenticação
+## 🛡️ Autenticação
 
-A autenticação é feita via JWT. O token é armazenado no `localStorage` e enviado em todas as requisições autenticadas por meio do cabeçalho:
+A autenticação é feita via JWT (JSON Web Token). O token é gerado pelo backend durante o login e armazenado no `localStorage` do navegador. Ele é utilizado para validar as requisições autenticadas, sendo enviado no cabeçalho HTTP:
 
 ```
 Authorization: Bearer <token>
 ```
 
-## Componentes Importantes
+### Fluxo de Autenticação
+
+1. **Registro:** O usuário cria uma conta fornecendo os dados necessários.
+2. **Login:** O backend valida as credenciais e retorna um token JWT.
+3. **Armazenamento:** O token é salvo no `localStorage` para persistência.
+4. **Requisições:** O token é incluído automaticamente nas requisições protegidas.
+5. **Logout:** O token é removido do `localStorage`, encerrando a sessão.
+
+**Nota:** Certifique-se de proteger o token contra acessos não autorizados e ataques XSS.Autenticação
+
+## 🔑 Componentes Importantes
 
 - **Login.tsx:** Tela de login com autenticação via backend.
 - **Register.tsx:** Tela para cadastro de novo usuário.
